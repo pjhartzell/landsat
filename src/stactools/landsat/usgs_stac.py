@@ -14,6 +14,10 @@ class Instrument(Enum):
     TM = "T"
 
 
+class ItemFromFileError(Exception):
+    """Unable to read Item from local or remote JSON file."""
+
+
 def convert_usgs_stac(
         mtl_xml_href: str,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
@@ -42,7 +46,17 @@ def get_usgs_items(
         mtl_xml_href: str,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> List[Item]:
 
-    # Will need to download remote STAC JSONs
+    def _read_item(href: str,
+                   read_href_modifier: Optional[ReadHrefModifier]) -> Item:
+        if read_href_modifier is not None:
+            new_href = read_href_modifier(href)
+        else:
+            new_href = href
+        if href_exists(new_href):
+            item = Item.from_file(new_href)
+            return item
+        else:
+            raise ItemFromFileError(f"Unable to read Item from {new_href}.")
 
     base_href, xml_filename = os.path.split(mtl_xml_href)
     base_filename = '_'.join(xml_filename.split('_')[:-1])
@@ -53,14 +67,12 @@ def get_usgs_items(
     if sensor is Instrument.TM:
         for product in ["SR", "ST"]:
             href = f"{base_file_href}_{product}_stac.json"
-            if href_exists(href):
-                item = Item.from_file(href)
-                items.append(item)
+            item = _read_item(href, read_href_modifier)
+            items.append(item)
     elif sensor is Instrument.MSS:
         href = f"{base_file_href}_stac.json"
-        if href_exists(href):
-            item = Item.from_file(href)
-            items.append(item)
+        item = _read_item(href, read_href_modifier)
+        items.append(item)
 
     return items
 

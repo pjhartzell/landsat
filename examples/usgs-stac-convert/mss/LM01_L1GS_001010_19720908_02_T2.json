@@ -3,7 +3,7 @@
   "stac_version": "1.0.0",
   "id": "LM01_L1GS_001010_19720908_02_T2",
   "properties": {
-    "created": "2022-02-18T17:36:50.085775Z",
+    "created": "2022-02-18T20:42:10.489091Z",
     "datetime": "1972-09-08T13:43:34.091000Z",
     "description": "Landsat Collection 2 Level-1 Product",
     "eo:cloud_cover": 43.0,
