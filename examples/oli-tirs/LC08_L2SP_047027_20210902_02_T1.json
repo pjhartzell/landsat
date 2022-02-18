@@ -1,0 +1,643 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "id": "LC08_L2SP_047027_20210902_02_T1",
+    "properties": {
+        "datetime": "2021-09-02T19:02:04.105997Z",
+        "platform": "landsat-8",
+        "proj:bbox": [
+            354885.0,
+            5135085.0,
+            591015.0,
+            5374215.0
+        ],
+        "proj:epsg": 32610,
+        "description": "Landsat Collection 2 Level-2 Surface Reflectance Product",
+        "instruments": [
+            "oli",
+            "tirs"
+        ],
+        "eo:cloud_cover": 4.77,
+        "view:off_nadir": 0,
+        "landsat:wrs_row": "027",
+        "landsat:scene_id": "LC80470272021245LGN00",
+        "landsat:wrs_path": "047",
+        "landsat:wrs_type": "2",
+        "view:sun_azimuth": 153.53271097,
+        "view:sun_elevation": 47.40629473,
+        "landsat:cloud_cover_land": 0.08,
+        "landsat:processing_level": "L2SP",
+        "landsat:collection_number": "02",
+        "landsat:collection_category": "T1"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -124.27762177,
+                    48.51326102
+                ],
+                [
+                    -121.77159688,
+                    48.06863242
+                ],
+                [
+                    -122.460972,
+                    46.35503642
+                ],
+                [
+                    -124.96308855,
+                    46.80818102
+                ],
+                [
+                    -124.27762177,
+                    48.51326102
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "collection",
+            "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-8-c2-l2",
+            "type": "application/json"
+        },
+        {
+            "rel": "root",
+            "href": "https://planetarycomputer.microsoft.com/api/stac/v1",
+            "type": "application/json",
+            "title": "Microsoft Planetary Computer STAC API"
+        },
+        {
+            "rel": "alternate",
+            "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_02_T1",
+            "type": "text/html",
+            "title": "USGS stac-browser page"
+        },
+        {
+            "rel": "preview",
+            "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=landsat-8-c2-l2&item=LC08_L2SP_047027_20210902_02_T1",
+            "type": "text/html",
+            "title": "Map of item"
+        },
+        {
+            "rel": "self",
+            "href": "/Users/pjh/dev/landsat/examples/oli-tirs/LC08_L2SP_047027_20210902_02_T1.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "ANG": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ANG.txt",
+            "type": "text/plain",
+            "title": "Angle Coefficients File",
+            "description": "Collection 2 Level-1 Angle Coefficients File (ANG)"
+        },
+        "SR_B1": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B1.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Coastal/Aerosol Band (B1)",
+            "description": "Collection 2 Level-2 Coastal/Aerosol Band (B1) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B1",
+                    "common_name": "coastal",
+                    "center_wavelength": 0.44,
+                    "full_width_half_max": 0.02
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B2": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B2.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Blue Band (B2)",
+            "description": "Collection 2 Level-2 Blue Band (B2) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B2",
+                    "common_name": "blue",
+                    "center_wavelength": 0.48,
+                    "full_width_half_max": 0.06
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B3": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B3.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Green Band (B3)",
+            "description": "Collection 2 Level-2 Green Band (B3) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B3",
+                    "common_name": "green",
+                    "center_wavelength": 0.56,
+                    "full_width_half_max": 0.06
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B4": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B4.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Red Band (B4)",
+            "description": "Collection 2 Level-2 Red Band (B4) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B4",
+                    "common_name": "red",
+                    "center_wavelength": 0.65,
+                    "full_width_half_max": 0.04
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B5": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B5.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Near Infrared Band 0.8 (B5)",
+            "description": "Collection 2 Level-2 Near Infrared Band 0.8 (B5) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B5",
+                    "common_name": "nir08",
+                    "center_wavelength": 0.86,
+                    "full_width_half_max": 0.03
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B6": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B6.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Short-wave Infrared Band 1.6 (B6)",
+            "description": "Collection 2 Level-2 Short-wave Infrared Band 1.6 (B6) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B6",
+                    "common_name": "swir16",
+                    "center_wavelength": 1.6,
+                    "full_width_half_max": 0.08
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "SR_B7": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_B7.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Short-wave Infrared Band 2.2 (B7)",
+            "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (B7) Surface Reflectance",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "SR_B7",
+                    "common_name": "swir22",
+                    "center_wavelength": 2.2,
+                    "full_width_half_max": 0.2
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_QA": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_QA.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Surface Temperature Quality Assessment Band",
+            "description": "Landsat Collection 2 Level-2 Surface Temperature Band Surface Temperature Product",
+            "gsd": 30.0,
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_B10": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_B10.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Surface Temperature Band (B10)",
+            "description": "Landsat Collection 2 Level-2 Surface Temperature Band (B10) Surface Temperature Product",
+            "gsd": 100.0,
+            "eo:bands": [
+                {
+                    "gsd": 100.0,
+                    "name": "ST_B10",
+                    "common_name": "lwir11",
+                    "center_wavelength": 10.9,
+                    "full_width_half_max": 0.8
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "MTL.txt": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_MTL.txt",
+            "type": "text/plain",
+            "title": "Product Metadata File",
+            "description": "Collection 2 Level-1 Product Metadata File (MTL)"
+        },
+        "MTL.xml": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_MTL.xml",
+            "type": "application/xml",
+            "title": "Product Metadata File (xml)",
+            "description": "Collection 2 Level-1 Product Metadata File (xml)"
+        },
+        "ST_DRAD": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_DRAD.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Downwelled Radiance Band",
+            "description": "Landsat Collection 2 Level-2 Downwelled Radiance Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_DRAD",
+                    "description": "downwelled radiance"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_EMIS": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_EMIS.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Emissivity Band",
+            "description": "Landsat Collection 2 Level-2 Emissivity Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_EMIS",
+                    "description": "emissivity"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_EMSD": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_EMSD.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Emissivity Standard Deviation Band",
+            "description": "Landsat Collection 2 Level-2 Emissivity Standard Deviation Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_EMSD",
+                    "description": "emissivity standard deviation"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_TRAD": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_TRAD.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Thermal Radiance Band",
+            "description": "Landsat Collection 2 Level-2 Thermal Radiance Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_TRAD",
+                    "description": "thermal radiance"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_URAD": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_URAD.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Upwelled Radiance Band",
+            "description": "Landsat Collection 2 Level-2 Upwelled Radiance Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_URAD",
+                    "description": "upwelled radiance"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "MTL.json": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_MTL.json",
+            "type": "application/json",
+            "title": "Product Metadata File (json)",
+            "description": "Collection 2 Level-1 Product Metadata File (json)"
+        },
+        "QA_PIXEL": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_QA_PIXEL.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Pixel Quality Assessment Band",
+            "description": "Collection 2 Level-1 Pixel Quality Assessment Band",
+            "gsd": 30.0,
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_ATRAN": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_ATRAN.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Atmospheric Transmittance Band",
+            "description": "Landsat Collection 2 Level-2 Atmospheric Transmittance Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_ATRAN",
+                    "description": "atmospheric transmission"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "ST_CDIST": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_ST_CDIST.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Cloud Distance Band",
+            "description": "Landsat Collection 2 Level-2 Cloud Distance Band Surface Temperature Product",
+            "gsd": 30.0,
+            "eo:bands": [
+                {
+                    "gsd": 30,
+                    "name": "ST_CDIST",
+                    "description": "distance to nearest cloud"
+                }
+            ],
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "QA_RADSAT": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_QA_RADSAT.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Radiometric Saturation Quality Assessment Band",
+            "description": "Collection 2 Level-1 Radiometric Saturation Quality Assessment Band",
+            "gsd": 30.0,
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "thumbnail": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_thumb_small.jpeg",
+            "type": "image/jpeg",
+            "title": "Thumbnail image"
+        },
+        "SR_QA_AEROSOL": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_SR_QA_AEROSOL.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Aerosol Quality Analysis Band",
+            "description": "Collection 2 Level-2 Aerosol Quality Analysis Band (ANG) Surface Reflectance",
+            "gsd": 30.0,
+            "proj:shape": [
+                7971,
+                7871
+            ],
+            "proj:transform": [
+                30.0,
+                0.0,
+                354885.0,
+                0.0,
+                -30.0,
+                5374215.0
+            ]
+        },
+        "reduced_resolution_browse": {
+            "href": "https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2021/047/027/LC08_L2SP_047027_20210902_20210910_02_T1/LC08_L2SP_047027_20210902_20210910_02_T1_thumb_large.jpeg",
+            "type": "image/jpeg",
+            "title": "Reduced resolution browse image"
+        },
+        "tilejson": {
+            "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-8-c2-l2&item=LC08_L2SP_047027_20210902_02_T1&assets=SR_B4&assets=SR_B3&assets=SR_B2&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55",
+            "type": "application/json",
+            "title": "TileJSON with default rendering",
+            "roles": [
+                "tiles"
+            ]
+        },
+        "rendered_preview": {
+            "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-8-c2-l2&item=LC08_L2SP_047027_20210902_02_T1&assets=SR_B4&assets=SR_B3&assets=SR_B2&color_formula=gamma+RGB+2.7%2C+saturation+1.5%2C+sigmoidal+RGB+15+0.55",
+            "type": "image/png",
+            "title": "Rendered preview",
+            "rel": "preview",
+            "roles": [
+                "overview"
+            ]
+        }
+    },
+    "bbox": [
+        -124.96461491344371,
+        46.353785123980714,
+        -121.76757697755058,
+        48.514454876019286
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+        "https://landsat.usgs.gov/stac/landsat-extension/v1.1.0/schema.json"
+    ],
+    "collection": "landsat-8-c2-l2"
+}
