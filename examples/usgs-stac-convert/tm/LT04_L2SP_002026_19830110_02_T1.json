@@ -3,26 +3,26 @@
   "stac_version": "1.0.0",
   "id": "LT04_L2SP_002026_19830110_02_T1",
   "properties": {
-    "created": "2022-02-18T20:42:10.887637Z",
     "datetime": "1983-01-10T13:52:14.171013Z",
-    "description": "Landsat Collection 2 Level-2 Product",
     "eo:cloud_cover": 7.0,
+    "view:sun_azimuth": 154.05548755,
+    "view:sun_elevation": 15.13135888,
+    "platform": "landsat-4",
     "instruments": [
       "tm"
     ],
+    "view:off_nadir": 0,
     "landsat:cloud_cover_land": 1.0,
+    "landsat:wrs_type": "2",
+    "landsat:wrs_path": "002",
+    "landsat:wrs_row": "026",
+    "landsat:scene_id": "LT40020261983010XXX03",
     "landsat:collection_category": "T1",
     "landsat:collection_number": "02",
     "landsat:correction": "L2SP",
-    "landsat:scene_id": "LT40020261983010XXX03",
-    "landsat:wrs_path": "002",
-    "landsat:wrs_row": "026",
-    "landsat:wrs_type": "2",
-    "platform": "landsat-4",
     "proj:epsg": 32622,
-    "view:off_nadir": 0,
-    "view:sun_azimuth": 154.05548755,
-    "view:sun_elevation": 15.13135888
+    "description": "Landsat Collection 2 Level-2 Product",
+    "created": "2022-02-19T15:54:44.694782Z"
   },
   "geometry": {
     "type": "Polygon",

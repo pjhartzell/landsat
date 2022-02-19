@@ -1,10 +1,10 @@
 from datetime import datetime, timezone
 import os
 from enum import Enum
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Union
 import copy
 
-from pystac import Asset, Item, MediaType
+from pystac import Asset, Item, MediaType, Link, RelType
 from stactools.core.utils import href_exists
 from stactools.core.io import ReadHrefModifier
 
@@ -28,7 +28,7 @@ def convert_usgs_stac(
     # generate a formatted item with no assets
     item = format_usgs_item(copy.deepcopy(usgs_items[0]))
 
-    # generate formatted assets, potentially from more than one JSON file
+    # generate formatted assets, potentially from more than one item
     assets = {}
     base_asset_href = os.path.dirname(mtl_xml_href)
     for usgs_item in usgs_items:
@@ -46,8 +46,9 @@ def get_usgs_items(
         mtl_xml_href: str,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> List[Item]:
 
-    def _read_item(href: str,
-                   read_href_modifier: Optional[ReadHrefModifier]) -> Item:
+    def _read_item(
+            href: str, read_href_modifier: Optional[ReadHrefModifier]
+    ) -> Union[Item, None]:
         if read_href_modifier is not None:
             new_href = read_href_modifier(href)
         else:
@@ -56,7 +57,7 @@ def get_usgs_items(
             item = Item.from_file(new_href)
             return item
         else:
-            raise ItemFromFileError(f"Unable to read Item from {new_href}.")
+            return None
 
     base_href, xml_filename = os.path.split(mtl_xml_href)
     base_filename = '_'.join(xml_filename.split('_')[:-1])
@@ -68,7 +69,8 @@ def get_usgs_items(
         for product in ["SR", "ST"]:
             href = f"{base_file_href}_{product}_stac.json"
             item = _read_item(href, read_href_modifier)
-            items.append(item)
+            if item is not None:
+                items.append(item)
     elif sensor is Instrument.MSS:
         href = f"{base_file_href}_stac.json"
         item = _read_item(href, read_href_modifier)
@@ -77,54 +79,44 @@ def get_usgs_items(
     return items
 
 
-def format_usgs_item(stac_item: Item) -> Item:
-    item = stac_item.to_dict(transform_hrefs=False)
-    extensions = item["stac_extensions"]
-    properties = item["properties"]
-    links = item["links"]
+def format_usgs_item(item: Item) -> Item:
+    item.stac_extensions.remove(
+        "https://stac-extensions.github.io/storage/v1.0.0/schema.json")
+    item.stac_extensions.remove(
+        "https://stac-extensions.github.io/file/v1.0.0/schema.json")
 
-    # remove unused extensions
-    extensions = [e for e in extensions if "/file/" not in e]
-    extensions = [e for e in extensions if "/storage/" not in e]
-    item["stac_extensions"] = extensions
-
-    # sensor specific
-    id_parts = item["id"].split('_')
-    instrument = Instrument(item["id"][1])
+    id_parts = item.id.split('_')
+    instrument = Instrument(item.id[1])
     if instrument is Instrument.TM:
-        item["id"] = '_'.join(id_parts[:4] + id_parts[-3:-1])
-        properties["description"] = "Landsat Collection 2 Level-2 Product"
+        item.id = '_'.join(id_parts[:4] + id_parts[-3:-1])
+        item.properties["description"] = "Landsat Collection 2 Level-2 Product"
     elif instrument is Instrument.MSS:
-        item["id"] = '_'.join(id_parts[:4] + id_parts[-2:])
-        properties["description"] = "Landsat Collection 2 Level-1 Product"
+        item.id = '_'.join(id_parts[:4] + id_parts[-2:])
+        item.properties["description"] = "Landsat Collection 2 Level-1 Product"
 
-    properties.pop("proj:shape")
-    properties.pop("proj:transform")
-    properties["platform"] = properties["platform"].lower().replace("_", "-")
-    properties["instruments"] = [i.lower() for i in properties["instruments"]]
-    # properties["landsat:processing_level"] = properties.pop("landsat:correction")
-    properties["created"] = datetime.now(tz=timezone.utc).isoformat().replace(
-        "+00:00", "Z")
-    item["properties"] = dict(sorted(properties.items()))
+    item.properties.pop("proj:shape")
+    item.properties.pop("proj:transform")
+    item.properties["platform"] = item.properties["platform"].lower().replace(
+        "_", "-")
+    item.properties["instruments"] = [
+        i.lower() for i in item.properties["instruments"]
+    ]
+    item.properties["created"] = datetime.now(
+        tz=timezone.utc).isoformat().replace("+00:00", "Z")
 
-    # alternate usgs stac browser
-    self_link_dict = next(lnk for lnk in links if lnk["rel"] == "self")
-    self_href = self_link_dict["href"]
-    browse_link, _ = os.path.split(self_href)
-    browse_link = browse_link.replace("/data/", "/stac-browser/")
-    alternate_link = {
-        "rel": "alternate",
-        "href": browse_link,
-        "type": "text/html",
-        "title": "USGS stac-browser page"
-    }
-    item["links"] = [alternate_link]
+    self_href = item.get_self_href()
+    data_href, _ = os.path.split(self_href)
+    usgs_stac_browse_href = data_href.replace("/data/", "/stac-browser/")
+    usgs_stac_browse_link = Link(RelType.ALTERNATE,
+                                 usgs_stac_browse_href,
+                                 media_type="text/html",
+                                 title="USGS stac-browser page")
+    item.clear_links()
+    item.add_link(usgs_stac_browse_link)
 
-    item["assets"] = {}
-    item.pop("collection")
-    item.pop("description")
-
-    item = Item.from_dict(item)
+    item.assets = {}
+    item.set_collection(None)
+    item.extra_fields.pop("description")
 
     return item
 
@@ -133,7 +125,6 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
     assets = item.get_assets()
     formatted_assets = {}
 
-    # remove unused assets
     assets.pop("index")
 
     # format the common assets
@@ -145,44 +136,41 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
         asset = assets.get(asset_key)
         if asset is None:
             continue
-        else:
-            asset = asset.to_dict()
 
-        filename = os.path.basename(asset["href"])
-        href = os.path.join(base_asset_href, filename)
+        asset.extra_fields["alternate"] = {"usgs": asset.href}
+        filename = os.path.basename(asset.href)
+        new_href = os.path.join(base_asset_href, filename)
+        asset.href = new_href
 
-        asset["alternate"] = {"usgs": asset["href"]}
-        asset["href"] = href
-
-        asset.pop("file:checksum")
+        asset.extra_fields.pop("file:checksum")
 
         if asset_key == "ANG.txt":
-            formatted_assets["ANG"] = Asset.from_dict(asset)
+            formatted_assets["ANG"] = asset
         else:
-            formatted_assets[asset_key] = Asset.from_dict(asset)
+            formatted_assets[asset_key] = asset
 
         assets.pop(asset_key)
 
     # only the full-size spatial assets should remain now
 
     for asset_key in assets.keys():
-        asset = assets.get(asset_key).to_dict()
+        asset = assets.get(asset_key)
 
-        filename = os.path.basename(asset["href"])
-        href = os.path.join(base_asset_href, filename)
+        asset.extra_fields["alternate"] = {"usgs": asset.href}
+        filename = os.path.basename(asset.href)
+        new_href = os.path.join(base_asset_href, filename)
+        asset.href = new_href
 
-        asset["alternate"] = {"usgs": asset["href"]}
-        asset["href"] = href
+        asset.media_type = MediaType.COG
 
-        asset["type"] = MediaType.COG
+        asset.extra_fields["proj:shape"] = item.properties["proj:shape"]
+        asset.extra_fields["proj:transform"] = item.properties[
+            "proj:transform"]
 
-        asset["proj:shape"] = item.properties["proj:shape"]
-        asset["proj:transform"] = item.properties["proj:transform"]
-
-        asset.pop("file:checksum")
+        asset.extra_fields.pop("file:checksum")
 
         name, _ = os.path.splitext(filename)
         new_key = name[41:]
-        formatted_assets[new_key] = Asset.from_dict(asset)
+        formatted_assets[new_key] = asset
 
     return formatted_assets
