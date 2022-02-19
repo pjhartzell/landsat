@@ -14,10 +14,6 @@ class Instrument(Enum):
     TM = "T"
 
 
-class ItemFromFileError(Exception):
-    """Unable to read Item from local or remote JSON file."""
-
-
 def convert_usgs_stac(
         mtl_xml_href: str,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
