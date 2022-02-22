@@ -11,6 +11,7 @@ from stactools.core.io import ReadHrefModifier
 
 from stactools.landsat import constants
 
+
 class Instrument(Enum):
     MSS = "M"
     TM = "T"
@@ -21,18 +22,18 @@ def create_collection_c2l1(
         read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
     """Note that collection 2 level-1 is *currently* exclusively MSS data"""
 
-    collection = Collection(
-        id=constants.C2_L1_ID,
-        description=constants.C2_L1_DESCRIPTION,
-        extent=constants.C2_L1_EXTENTS,
-        title=constants.C2_L1_TITLE,
-        providers=constants.C2_L1_PROVIDERS,
-        keywords=constants.C2_L1_KEYWORDS)
+    collection = Collection(id=constants.C2_L1_ID,
+                            description=constants.C2_L1_DESCRIPTION,
+                            extent=constants.C2_L1_EXTENTS,
+                            title=constants.C2_L1_TITLE,
+                            providers=constants.C2_L1_PROVIDERS,
+                            keywords=constants.C2_L1_KEYWORDS)
 
     collection.license = constants.C2_L1_LICENSE
     collection.add_link(constants.C2_L1_LICENSE_LINK)
 
-    collection.summaries.add("platform", [f"landsat-{n}" for n in [1, 2, 3, 4, 5]])
+    collection.summaries.add("platform",
+                             [f"landsat-{n}" for n in [1, 2, 3, 4, 5]])
     collection.summaries.add("instruments", "mss")
     collection.summaries.add("gsd", 60)
 

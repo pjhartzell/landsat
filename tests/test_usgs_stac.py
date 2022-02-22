@@ -38,7 +38,7 @@ class UsgsStacTest(unittest.TestCase):
 
         create_item_from_usgs(mtl_xml_href, read_href_modifier=do_it)
         assert did_it
-    
+
     def test_c2l1_collection(self):
         mtl_xml_href = "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml"  # noqa
 
