@@ -22,7 +22,7 @@
     "landsat:correction": "L1GS",
     "proj:epsg": 32625,
     "description": "Landsat Collection 2 Level-1 Product",
-    "created": "2022-02-20T18:33:18.372748Z"
+    "created": "2022-02-22T16:23:39.822686Z"
   },
   "geometry": {
     "type": "Polygon",
@@ -60,7 +60,7 @@
     },
     {
       "rel": "self",
-      "href": "/Users/pjh/dev/landsat/examples/usgs-stac-convert/mss/LM01_L1GS_001010_19720908_02_T2.json",
+      "href": "/Users/pjh/dev/landsat/examples/items/usgs-stac-convert/mss/LM01_L1GS_001010_19720908_02_T2.json",
       "type": "application/json"
     }
   ],

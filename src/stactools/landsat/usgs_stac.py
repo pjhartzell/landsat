@@ -4,17 +4,61 @@ from enum import Enum
 from typing import Dict, Optional, List, Union
 import copy
 
-from pystac import Asset, Item, MediaType, Link, RelType
+from pystac import Asset, Collection, Item, MediaType, Link, RelType
+from pystac.extensions.item_assets import ItemAssetsExtension, AssetDefinition
 from stactools.core.utils import href_exists
 from stactools.core.io import ReadHrefModifier
 
+from stactools.landsat import constants
 
 class Instrument(Enum):
     MSS = "M"
     TM = "T"
 
 
-def convert_usgs_stac(
+def create_collection_c2l1(
+        mss_mtl_xml_href: str,
+        read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
+    """Note that collection 2 level-1 is *currently* exclusively MSS data"""
+
+    collection = Collection(
+        id=constants.C2_L1_ID,
+        description=constants.C2_L1_DESCRIPTION,
+        extent=constants.C2_L1_EXTENTS,
+        title=constants.C2_L1_TITLE,
+        providers=constants.C2_L1_PROVIDERS,
+        keywords=constants.C2_L1_KEYWORDS)
+
+    collection.license = constants.C2_L1_LICENSE
+    collection.add_link(constants.C2_L1_LICENSE_LINK)
+
+    collection.summaries.add("platform", [f"landsat-{n}" for n in [1, 2, 3, 4, 5]])
+    collection.summaries.add("instruments", "mss")
+    collection.summaries.add("gsd", 60)
+
+    item = create_item_from_usgs(mss_mtl_xml_href, read_href_modifier)
+    assets = item.get_assets()
+    mss_eo_bands = []
+    for key in ["B4", "B5", "B6", "B7"]:
+        asset = assets.get(key)
+        mss_eo_bands.append(asset.extra_fields["eo:bands"][0])
+    collection.summaries.add("eo:bands", mss_eo_bands)
+
+    item_assets = {}
+    for key, asset in assets.items():
+        asset_dict = asset.to_dict()
+        asset_dict.pop("href", None)
+        asset_dict.pop("alternate", None)
+        asset_dict.pop("proj:shape", None)
+        asset_dict.pop("proj:transform", None)
+        item_assets[key] = AssetDefinition(asset_dict)
+    item_assets_ext = ItemAssetsExtension.ext(collection, add_if_missing=True)
+    item_assets_ext.item_assets = item_assets
+
+    return collection
+
+
+def create_item_from_usgs(
         mtl_xml_href: str,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> Item:
 
