@@ -163,6 +163,20 @@ def format_usgs_item(item: Item) -> Item:
 
 
 def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
+
+    def _update_asset_hrefs(asset: Asset) -> Asset:
+        alternate = {
+            "usgs": {
+                "title": "USGS asset location",
+                "href": asset.href
+            }
+        }
+        asset.extra_fields["alternate"] = alternate
+        filename = os.path.basename(asset.href)
+        new_href = os.path.join(base_asset_href, filename)
+        asset.href = new_href
+        return Asset
+
     assets = item.get_assets()
     formatted_assets = {}
 
@@ -178,10 +192,7 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
         if asset is None:
             continue
 
-        asset.extra_fields["alternate"] = {"usgs": asset.href}
-        filename = os.path.basename(asset.href)
-        new_href = os.path.join(base_asset_href, filename)
-        asset.href = new_href
+        _update_asset_hrefs(asset)
 
         asset.extra_fields.pop("file:checksum")
 
@@ -197,10 +208,7 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
     for asset_key in assets.keys():
         asset = assets.get(asset_key)
 
-        asset.extra_fields["alternate"] = {"usgs": asset.href}
-        filename = os.path.basename(asset.href)
-        new_href = os.path.join(base_asset_href, filename)
-        asset.href = new_href
+        _update_asset_hrefs(asset)
 
         asset.media_type = MediaType.COG
 
@@ -210,7 +218,7 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
 
         asset.extra_fields.pop("file:checksum")
 
-        name, _ = os.path.splitext(filename)
+        name, _ = os.path.splitext(os.path.basename(asset.href))
         new_key = name[41:]
         formatted_assets[new_key] = asset
 

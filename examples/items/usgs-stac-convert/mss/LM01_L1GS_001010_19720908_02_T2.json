@@ -22,7 +22,7 @@
     "landsat:correction": "L1GS",
     "proj:epsg": 32625,
     "description": "Landsat Collection 2 Level-1 Product",
-    "created": "2022-02-22T16:30:06.685141Z"
+    "created": "2022-02-23T22:08:36.244152Z"
   },
   "geometry": {
     "type": "Polygon",
@@ -57,11 +57,6 @@
       "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2",
       "type": "text/html",
       "title": "USGS stac-browser page"
-    },
-    {
-      "rel": "self",
-      "href": "/Users/pjh/dev/landsat/examples/items/usgs-stac-convert/mss/LM01_L1GS_001010_19720908_02_T2.json",
-      "type": "application/json"
     }
   ],
   "assets": {
@@ -70,7 +65,10 @@
       "type": "image/jpeg",
       "title": "Thumbnail image",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg"
+        }
       },
       "roles": [
         "thumbnail"
@@ -81,7 +79,10 @@
       "type": "image/jpeg",
       "title": "Reduced resolution browse image",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg"
+        }
       },
       "roles": [
         "overview"
@@ -93,7 +94,10 @@
       "title": "Product Metadata File (json)",
       "description": "Collection 2 Level-1 Product Metadata File (json)",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json"
+        }
       },
       "roles": [
         "metadata"
@@ -105,7 +109,10 @@
       "title": "Product Metadata File",
       "description": "Collection 2 Level-1 Product Metadata File (MTL)",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt"
+        }
       },
       "roles": [
         "metadata"
@@ -117,7 +124,10 @@
       "title": "Product Metadata File (xml)",
       "description": "Collection 2 Level-1 Product Metadata File (xml)",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml"
+        }
       },
       "roles": [
         "metadata"
@@ -137,7 +147,10 @@
         }
       ],
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF"
+        }
       },
       "proj:shape": [
         4214,
@@ -169,7 +182,10 @@
         }
       ],
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF"
+        }
       },
       "proj:shape": [
         4214,
@@ -201,7 +217,10 @@
         }
       ],
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF"
+        }
       },
       "proj:shape": [
         4214,
@@ -234,7 +253,10 @@
         }
       ],
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF"
+        }
       },
       "proj:shape": [
         4214,
@@ -259,7 +281,10 @@
       "title": "Quality Assessment Band",
       "description": "Collection 2 Level-1 Quality Assessment Band (QA_PIXEL) Top of Atmosphere Radiance",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF"
+        }
       },
       "proj:shape": [
         4214,
@@ -283,7 +308,10 @@
       "title": "Radiometric Saturation Quality Assessment Band",
       "description": "Radiometric Saturation Quality Assessment Band Top of Atmosphere Radiance",
       "alternate": {
-        "usgs": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF"
+        "usgs": {
+          "title": "USGS asset location",
+          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF"
+        }
       },
       "proj:shape": [
         4214,
