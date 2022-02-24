@@ -1,346 +1,346 @@
 {
-  "type": "Feature",
-  "stac_version": "1.0.0",
-  "id": "LM01_L1GS_001010_19720908_02_T2",
-  "properties": {
-    "datetime": "1972-09-08T13:43:34.091000Z",
-    "eo:cloud_cover": 43.0,
-    "view:sun_azimuth": 172.41815593,
-    "view:sun_elevation": 24.87312023,
-    "platform": "landsat-1",
-    "instruments": [
-      "mss"
-    ],
-    "view:off_nadir": 0,
-    "landsat:cloud_cover_land": 46.0,
-    "landsat:wrs_type": "1",
-    "landsat:wrs_path": "001",
-    "landsat:wrs_row": "010",
-    "landsat:scene_id": "LM10010101972252XXX01",
-    "landsat:collection_category": "T2",
-    "landsat:collection_number": "02",
-    "landsat:correction": "L1GS",
-    "proj:epsg": 32625,
-    "description": "Landsat Collection 2 Level-1 Product",
-    "created": "2022-02-23T22:08:36.244152Z"
-  },
-  "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-      [
-        [
-          -34.342777359690906,
-          71.6736886240419
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "id": "LM01_L1GS_001010_19720908_02_T2",
+    "properties": {
+        "datetime": "1972-09-08T13:43:34.091000Z",
+        "eo:cloud_cover": 43.0,
+        "view:sun_azimuth": 172.41815593,
+        "view:sun_elevation": 24.87312023,
+        "platform": "landsat-1",
+        "instruments": [
+            "mss"
         ],
-        [
-          -36.70080544861747,
-          70.18448226408043
-        ],
-        [
-          -32.42683403196701,
-          69.42483853001222
-        ],
-        [
-          -29.841815210171347,
-          70.85738280018273
-        ],
-        [
-          -34.342777359690906,
-          71.6736886240419
+        "view:off_nadir": 0,
+        "landsat:cloud_cover_land": 46.0,
+        "landsat:wrs_type": "1",
+        "landsat:wrs_path": "001",
+        "landsat:wrs_row": "010",
+        "landsat:scene_id": "LM10010101972252XXX01",
+        "landsat:collection_category": "T2",
+        "landsat:collection_number": "02",
+        "landsat:correction": "L1GS",
+        "proj:epsg": 32625,
+        "description": "Landsat Collection 2 Level-1 Product",
+        "created": "2022-02-23T22:08:36.244152Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -34.342777359690906,
+                    71.6736886240419
+                ],
+                [
+                    -36.70080544861747,
+                    70.18448226408043
+                ],
+                [
+                    -32.42683403196701,
+                    69.42483853001222
+                ],
+                [
+                    -29.841815210171347,
+                    70.85738280018273
+                ],
+                [
+                    -34.342777359690906,
+                    71.6736886240419
+                ]
+            ]
         ]
-      ]
+    },
+    "links": [
+        {
+            "rel": "alternate",
+            "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2",
+            "type": "text/html",
+            "title": "USGS stac-browser page"
+        }
+    ],
+    "assets": {
+        "thumbnail": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg",
+            "type": "image/jpeg",
+            "title": "Thumbnail image",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg"
+                }
+            },
+            "roles": [
+                "thumbnail"
+            ]
+        },
+        "reduced_resolution_browse": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg",
+            "type": "image/jpeg",
+            "title": "Reduced resolution browse image",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg"
+                }
+            },
+            "roles": [
+                "overview"
+            ]
+        },
+        "MTL.json": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json",
+            "type": "application/json",
+            "title": "Product Metadata File (json)",
+            "description": "Collection 2 Level-1 Product Metadata File (json)",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json"
+                }
+            },
+            "roles": [
+                "metadata"
+            ]
+        },
+        "MTL.txt": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt",
+            "type": "text/plain",
+            "title": "Product Metadata File",
+            "description": "Collection 2 Level-1 Product Metadata File (MTL)",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt"
+                }
+            },
+            "roles": [
+                "metadata"
+            ]
+        },
+        "MTL.xml": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml",
+            "type": "application/xml",
+            "title": "Product Metadata File (xml)",
+            "description": "Collection 2 Level-1 Product Metadata File (xml)",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml"
+                }
+            },
+            "roles": [
+                "metadata"
+            ]
+        },
+        "B4": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Green Band (B4)",
+            "description": "Collection 2 Level-1 Green Band (B4) Top of Atmosphere Radiance",
+            "eo:bands": [
+                {
+                    "name": "B4",
+                    "common_name": "green",
+                    "gsd": 60,
+                    "center_wavelength": 0.55
+                }
+            ],
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "data"
+            ]
+        },
+        "B5": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Red Band (B5)",
+            "description": "Collection 2 Level-1 Red Band (B5) Top of Atmosphere Radiance",
+            "eo:bands": [
+                {
+                    "name": "B5",
+                    "common_name": "red",
+                    "gsd": 60,
+                    "center_wavelength": 0.65
+                }
+            ],
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "data"
+            ]
+        },
+        "B6": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Near Infrared Band 0.7 (B6)",
+            "description": "Collection 2 Level-1 Near Infrared Band 0.7 (B6) Top of Atmosphere Radiance",
+            "eo:bands": [
+                {
+                    "name": "B6",
+                    "common_name": "nir08",
+                    "gsd": 60,
+                    "center_wavelength": 0.75
+                }
+            ],
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "data",
+                "reflectance"
+            ]
+        },
+        "B7": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Near Infrared Band 0.9 (B7)",
+            "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B7) Top of Atmosphere Radiance",
+            "eo:bands": [
+                {
+                    "name": "B7",
+                    "common_name": "nir09",
+                    "gsd": 60,
+                    "center_wavelength": 0.95
+                }
+            ],
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "data",
+                "reflectance"
+            ]
+        },
+        "QA_PIXEL": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Quality Assessment Band",
+            "description": "Collection 2 Level-1 Quality Assessment Band (QA_PIXEL) Top of Atmosphere Radiance",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "cloud"
+            ]
+        },
+        "QA_RADSAT": {
+            "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "Radiometric Saturation Quality Assessment Band",
+            "description": "Radiometric Saturation Quality Assessment Band Top of Atmosphere Radiance",
+            "alternate": {
+                "usgs": {
+                    "title": "USGS asset location",
+                    "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF"
+                }
+            },
+            "proj:shape": [
+                4214,
+                4296
+            ],
+            "proj:transform": [
+                60.0,
+                0.0,
+                358830.0,
+                0.0,
+                -60.0,
+                7953510.0
+            ],
+            "roles": [
+                "saturation"
+            ]
+        }
+    },
+    "bbox": [
+        -36.70080544861747,
+        69.42483853001222,
+        -29.841815210171347,
+        71.6736886240419
+    ],
+    "stac_extensions": [
+        "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/alternate-assets/v1.1.0/schema.json"
     ]
-  },
-  "links": [
-    {
-      "rel": "alternate",
-      "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2",
-      "type": "text/html",
-      "title": "USGS stac-browser page"
-    }
-  ],
-  "assets": {
-    "thumbnail": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg",
-      "type": "image/jpeg",
-      "title": "Thumbnail image",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_small.jpeg"
-        }
-      },
-      "roles": [
-        "thumbnail"
-      ]
-    },
-    "reduced_resolution_browse": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg",
-      "type": "image/jpeg",
-      "title": "Reduced resolution browse image",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_thumb_large.jpeg"
-        }
-      },
-      "roles": [
-        "overview"
-      ]
-    },
-    "MTL.json": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json",
-      "type": "application/json",
-      "title": "Product Metadata File (json)",
-      "description": "Collection 2 Level-1 Product Metadata File (json)",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.json"
-        }
-      },
-      "roles": [
-        "metadata"
-      ]
-    },
-    "MTL.txt": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt",
-      "type": "text/plain",
-      "title": "Product Metadata File",
-      "description": "Collection 2 Level-1 Product Metadata File (MTL)",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.txt"
-        }
-      },
-      "roles": [
-        "metadata"
-      ]
-    },
-    "MTL.xml": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml",
-      "type": "application/xml",
-      "title": "Product Metadata File (xml)",
-      "description": "Collection 2 Level-1 Product Metadata File (xml)",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_MTL.xml"
-        }
-      },
-      "roles": [
-        "metadata"
-      ]
-    },
-    "B4": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Green Band (B4)",
-      "description": "Collection 2 Level-1 Green Band (B4) Top of Atmosphere Radiance",
-      "eo:bands": [
-        {
-          "name": "B4",
-          "common_name": "green",
-          "gsd": 60,
-          "center_wavelength": 0.55
-        }
-      ],
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B4.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "data"
-      ]
-    },
-    "B5": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Red Band (B5)",
-      "description": "Collection 2 Level-1 Red Band (B5) Top of Atmosphere Radiance",
-      "eo:bands": [
-        {
-          "name": "B5",
-          "common_name": "red",
-          "gsd": 60,
-          "center_wavelength": 0.65
-        }
-      ],
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B5.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "data"
-      ]
-    },
-    "B6": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Near Infrared Band 0.7 (B6)",
-      "description": "Collection 2 Level-1 Near Infrared Band 0.7 (B6) Top of Atmosphere Radiance",
-      "eo:bands": [
-        {
-          "name": "B6",
-          "common_name": "nir08",
-          "gsd": 60,
-          "center_wavelength": 0.75
-        }
-      ],
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B6.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "data",
-        "reflectance"
-      ]
-    },
-    "B7": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Near Infrared Band 0.9 (B7)",
-      "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B7) Top of Atmosphere Radiance",
-      "eo:bands": [
-        {
-          "name": "B7",
-          "common_name": "nir09",
-          "gsd": 60,
-          "center_wavelength": 0.95
-        }
-      ],
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_B7.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "data",
-        "reflectance"
-      ]
-    },
-    "QA_PIXEL": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Quality Assessment Band",
-      "description": "Collection 2 Level-1 Quality Assessment Band (QA_PIXEL) Top of Atmosphere Radiance",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_PIXEL.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "cloud"
-      ]
-    },
-    "QA_RADSAT": {
-      "href": "tests/data-files/usgs-stac/mss/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Radiometric Saturation Quality Assessment Band",
-      "description": "Radiometric Saturation Quality Assessment Band Top of Atmosphere Radiance",
-      "alternate": {
-        "usgs": {
-          "title": "USGS asset location",
-          "href": "https://landsatlook.usgs.gov/data/collection02/level-1/standard/mss/1972/001/010/LM01_L1GS_001010_19720908_20200909_02_T2/LM01_L1GS_001010_19720908_20200909_02_T2_QA_RADSAT.TIF"
-        }
-      },
-      "proj:shape": [
-        4214,
-        4296
-      ],
-      "proj:transform": [
-        60.0,
-        0.0,
-        358830.0,
-        0.0,
-        -60.0,
-        7953510.0
-      ],
-      "roles": [
-        "saturation"
-      ]
-    }
-  },
-  "bbox": [
-    -36.70080544861747,
-    69.42483853001222,
-    -29.841815210171347,
-    71.6736886240419
-  ],
-  "stac_extensions": [
-    "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json",
-    "https://stac-extensions.github.io/view/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/alternate-assets/v1.1.0/schema.json"
-  ]
 }

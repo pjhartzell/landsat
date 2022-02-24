@@ -135,8 +135,6 @@ def format_usgs_item(item: Item) -> Item:
         item.id = '_'.join(id_parts[:4] + id_parts[-2:])
         item.properties["description"] = "Landsat Collection 2 Level-1 Product"
 
-    item.properties.pop("proj:shape")
-    item.properties.pop("proj:transform")
     item.properties["platform"] = item.properties["platform"].lower().replace(
         "_", "-")
     item.properties["instruments"] = [
@@ -211,10 +209,6 @@ def format_usgs_assets(item: Item, base_asset_href: str) -> Dict[str, Asset]:
         _update_asset_hrefs(asset)
 
         asset.media_type = MediaType.COG
-
-        asset.extra_fields["proj:shape"] = item.properties["proj:shape"]
-        asset.extra_fields["proj:transform"] = item.properties[
-            "proj:transform"]
 
         asset.extra_fields.pop("file:checksum")
 
