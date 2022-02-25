@@ -38,7 +38,7 @@ class MtlMetadata:
         return int(self._get_text(xpath))
 
     @property
-    def scene_id(self) -> str:
+    def item_id(self) -> str:
         product_id = self._get_text("PRODUCT_CONTENTS/LANDSAT_PRODUCT_ID")
         # Remove the processing date, as products IDs
         # that only vary by processing date represent the
@@ -52,6 +52,10 @@ class MtlMetadata:
         id_parts = '_'.join(id_parts[:4] + id_parts[-2:])
 
         return id_parts
+
+    @property
+    def scene_id(self) -> str:
+        return self._get_text("LEVEL1_PROCESSING_RECORD/LANDSAT_SCENE_ID")
 
     @property
     def processing_level(self) -> str:
@@ -195,7 +199,7 @@ class MtlMetadata:
     @property
     def sr_gsd(self) -> float:
         return self._get_float(
-            "LEVEL1_PROJECTION_PARAMETERS/GRID_CELL_SIZE_THERMAL")
+            "LEVEL1_PROJECTION_PARAMETERS/GRID_CELL_SIZE_REFLECTIVE")
 
     @property
     def thermal_gsd(self) -> Optional[float]:
@@ -217,7 +221,12 @@ class MtlMetadata:
 
     @property
     def sun_azimuth(self) -> float:
-        return self._get_float("IMAGE_ATTRIBUTES/SUN_AZIMUTH")
+        # Sun Azimuth in landsat metadata is -180 to 180 from north, west being
+        # negative. In STAC, it's 0 to 360 clockwise from north.
+        azimuth = self._get_float("IMAGE_ATTRIBUTES/SUN_AZIMUTH")
+        if azimuth < 0.0:
+            azimuth += 360
+        return azimuth
 
     @property
     def sun_elevation(self) -> float:
@@ -225,7 +234,10 @@ class MtlMetadata:
 
     @property
     def off_nadir(self) -> Optional[float]:
-        if self._get_text("IMAGE_ATTRIBUTES/NADIR_OFFNADIR") == "NADIR":
+        # NADIR_OFFNADIR is not specified in MSS metadata files.
+        if self.item_id[1] == "M":
+            return None
+        elif self._get_text("IMAGE_ATTRIBUTES/NADIR_OFFNADIR") == "NADIR":
             return 0
         else:
             return None
@@ -239,22 +251,24 @@ class MtlMetadata:
         return self._get_text("IMAGE_ATTRIBUTES/WRS_ROW").zfill(3)
 
     @property
-    def additional_metadata(self) -> Dict[str, Any]:
+    def landsat_metadata(self) -> Dict[str, Any]:
         return {
             "landsat:cloud_cover_land":
-            self._get_float("IMAGE_ATTRIBUTES/CLOUD_COVER_LAND"),
+                self._get_float("IMAGE_ATTRIBUTES/CLOUD_COVER_LAND"),
             "landsat:wrs_type":
-            self._get_text("IMAGE_ATTRIBUTES/WRS_TYPE"),
+                self._get_text("IMAGE_ATTRIBUTES/WRS_TYPE"),
             "landsat:wrs_path":
-            self.wrs_path,
+                self.wrs_path,
             "landsat:wrs_row":
-            self.wrs_row,
+                self.wrs_row,
             "landsat:collection_category":
-            self._get_text("PRODUCT_CONTENTS/COLLECTION_CATEGORY"),
+                self._get_text("PRODUCT_CONTENTS/COLLECTION_CATEGORY"),
             "landsat:collection_number":
-            self._get_text("PRODUCT_CONTENTS/COLLECTION_NUMBER"),
-            "landsat:processing_level":
-            self.processing_level
+                self._get_text("PRODUCT_CONTENTS/COLLECTION_NUMBER"),
+            "landsat:correction":
+                self.processing_level,
+            "landsat:scene_id":
+                self.scene_id
         }
 
     @classmethod
