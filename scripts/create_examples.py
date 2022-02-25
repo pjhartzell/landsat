@@ -2,7 +2,7 @@ import os
 
 from pystac import CatalogType
 
-from stactools.landsat.usgs_stac import create_item_from_usgs, create_collection_c2l1
+# from stactools.landsat.usgs_stac import create_collection_c2l1
 from stactools.landsat.stac import create_item
 
 # Item: Multi Spectral Scanner (MSS), Collection 2 Level-1, Landsat 1-5

@@ -4,24 +4,26 @@ from enum import Enum
 from pystac.extensions.eo import Band
 from pystac import Extent, SpatialExtent, TemporalExtent, Provider, ProviderRole, Link, MediaType
 
+
 class Sensor(Enum):
     MSS = "M"
     TM = "T"
     ETM = "E"
     OLI_TIRS = "C"
 
-INSTRUMENT_KEYS = {
-    "M": "MSS",
-    "T": "TM_ETM",
-    "E": "TM_ETM",
-    "C": "OLI_TIRS"
-}
-
-INSTRUMENT_LIST = {
-    "M": ["mss"],
-    "T": ["tm"],
-    "E": ["etm"],
-    "C": ["oli", "tirs"]
+INSTRUMENT = {
+    "keys": {
+        "M": "MSS",
+        "T": "TM_ETM",
+        "E": "TM_ETM",
+        "C": "OLI_TIRS"
+    },
+    "lists": {
+        "M": ["mss"],
+        "T": ["tm"],
+        "E": ["etm"],
+        "C": ["oli", "tirs"]
+    }
 }
 
 LANDSAT_EXTENSION_SCHEMA = "https://landsat.usgs.gov/stac/landsat-extension/v1.1.1/schema.json"
@@ -79,6 +81,11 @@ COMMON_ASSETS = {
 INSTRUMENT_ASSETS = {
     "MSS": {
         "SR": {
+            "QA_PIXEL": {
+                "title": "Pixel Quality Assessment Band",
+                "description": "Collection 2 Level-1 Pixel Quality Assessment Band",
+                "roles": ["cloud"],
+            },
             "B4": {
                 "title": "Green Band (B4)",
                 "description": "Collection 2 Level-1 Green Band (B4) Top of Atmosphere Radiance",
@@ -102,17 +109,17 @@ INSTRUMENT_ASSETS = {
                 "description": "Collection 2 Level-1 Near Infrared Band 0.9 (B7) Top of Atmosphere Radiance",
                 "gsd": 60,
                 "roles": ["data"]
-            },
-            "QA_PIXEL": {
-                "title": "Pixel Quality Assessment Band",
-                "description": "Collection 2 Level-1 Pixel Quality Assessment Band",
-                "roles": ["cloud"],
             }
         },
         "ST": {}
     },
     "TM_ETM": {
         "SR": {
+            "QA_PIXEL": {
+                "title": "Pixel Quality Assessment Band",
+                "description": "Collection 2 Level-1 Pixel Quality Assessment Band",
+                "roles": ["cloud"],
+            },
             "SR_B1": {
                 "title": "Blue Band (B1)",
                 "description": "Collection 2 Level-2 Blue Band (B1) Surface Reflectance",
@@ -143,11 +150,6 @@ INSTRUMENT_ASSETS = {
                 "gsd": 30,
                 "roles": ["data"]
             },
-            "QA_PIXEL": {
-                "title": "Pixel Quality Assessment Band",
-                "description": "Collection 2 Level-1 Pixel Quality Assessment Band",
-                "roles": ["cloud"],
-            },
             "SR_B7": {
                 "title": "Short-wave Infrared Band 2.2 (B7)",
                 "description": "Collection 2 Level-2 Short-wave Infrared Band 2.2 (B7) Surface Reflectance",
@@ -163,7 +165,7 @@ INSTRUMENT_ASSETS = {
                 "title": "Cloud Quality Analysis Band",
                 "description": "Collection 2 Level-2 Cloud Quality Opacity Band Surface Reflectance",
                 "roles": ["data"]
-            },
+            }
         },
         "ST": {
             "ST_B6": {

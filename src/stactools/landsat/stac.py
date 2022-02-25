@@ -11,8 +11,7 @@ from stactools.core.io import ReadHrefModifier
 from stactools.landsat.assets import (ANG_ASSET_DEF, COMMON_ASSET_DEFS,
                                       SR_ASSET_DEFS, THERMAL_ASSET_DEFS)
 from stactools.landsat.constants import (COMMON_ASSETS, INSTRUMENT_ASSETS,
-                                         INSTRUMENT_EO_BANDS, INSTRUMENT_KEYS,
-                                         INSTRUMENT_LIST,
+                                         INSTRUMENT_EO_BANDS, INSTRUMENT,
                                          LANDSAT_EXTENSION_SCHEMA,
                                          L8_INSTRUMENTS, L8_ITEM_DESCRIPTION,
                                          L8_PLATFORM, L8_EXTENSION_SCHEMA,
@@ -111,7 +110,7 @@ def create_item(
                         properties={})
 
         item.common_metadata.platform = f"landsat-{satellite}"
-        item.common_metadata.instruments = INSTRUMENT_LIST[sensor.value]
+        item.common_metadata.instruments = INSTRUMENT["lists"][sensor.value]
         item.common_metadata.description = f"Landsat Collection 2 Level-{level} Product"
 
         # -- EO
@@ -151,7 +150,7 @@ def create_item(
             item.assets.pop("ANG", None)
 
         # -- Add optical assets
-        instrument_key = INSTRUMENT_KEYS[sensor.value]
+        instrument_key = INSTRUMENT["keys"][sensor.value]
         assets = INSTRUMENT_ASSETS[instrument_key]["SR"]
         bands = INSTRUMENT_EO_BANDS[instrument_key]["SR"]
         for key, asset_dict in assets.items():
@@ -179,11 +178,13 @@ def create_item(
                     eo.bands = [Band.create(**band)]
 
     # -- Add links
+    instrument_dir = "-".join(i for i in INSTRUMENT["lists"][sensor.value])
     usgs_item_page = (
-        f"https://landsatlook.usgs.gov/stac-browser/collection02/level-2/standard/oli-tirs"
+        f"https://landsatlook.usgs.gov/stac-browser/collection02/level-{level}"
+        f"/standard/{instrument_dir}"
         f"/{mtl_metadata.scene_datetime.year}"
         f"/{mtl_metadata.wrs_path}/{mtl_metadata.wrs_row}"
-        f"/{mtl_metadata.item_id}")
+        f"/{mtl_metadata.product_id}")
 
     item.add_link(
         pystac.Link(rel="alternate",
