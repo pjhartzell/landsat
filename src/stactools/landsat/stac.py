@@ -150,10 +150,10 @@ def create_item(
         if key == "ANG" and sensor is Sensor.MSS:
             item.assets.pop("ANG", None)
 
-        # -- Add remaining assets
+        # -- Add optical assets
         instrument_key = INSTRUMENT_KEYS[sensor.value]
-        assets = INSTRUMENT_ASSETS[instrument_key]
-        bands = INSTRUMENT_EO_BANDS[instrument_key]
+        assets = INSTRUMENT_ASSETS[instrument_key]["SR"]
+        bands = INSTRUMENT_EO_BANDS[instrument_key]["SR"]
         for key, asset_dict in assets.items():
             asset_dict["type"] = pystac.MediaType.COG
             asset_dict["href"] = f"{base_href}_{key}.TIF"
@@ -163,6 +163,20 @@ def create_item(
                 asset = item.assets[key]
                 eo = EOExtension.ext(asset, add_if_missing=True)
                 eo.bands = [Band.create(**band)]
+
+        # -- Add thermal assets (can only exist if optical exists; no nighttime)
+        if mtl_metadata.processing_level == 'L2SP':
+            assets = INSTRUMENT_ASSETS[instrument_key]["ST"]
+            bands = INSTRUMENT_EO_BANDS[instrument_key]["ST"]
+            for key, asset_dict in assets.items():
+                asset_dict["type"] = pystac.MediaType.COG
+                asset_dict["href"] = f"{base_href}_{key}.TIF"
+                item.add_asset(key, pystac.Asset.from_dict(asset_dict))
+                band = bands.get(key, None)
+                if band is not None:
+                    asset = item.assets[key]
+                    eo = EOExtension.ext(asset, add_if_missing=True)
+                    eo.bands = [Band.create(**band)]
 
     # -- Add links
     usgs_item_page = (
