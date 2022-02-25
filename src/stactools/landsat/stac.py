@@ -10,12 +10,12 @@ from stactools.core.io import ReadHrefModifier
 
 from stactools.landsat.assets import (ANG_ASSET_DEF, COMMON_ASSET_DEFS,
                                       SR_ASSET_DEFS, THERMAL_ASSET_DEFS)
-from stactools.landsat.constants import (COMMON_ASSETS, INSTRUMENT_ASSETS,
-                                         INSTRUMENT_EO_BANDS, INSTRUMENT,
-                                         LANDSAT_EXTENSION_SCHEMA,
-                                         L8_INSTRUMENTS, L8_ITEM_DESCRIPTION,
-                                         L8_PLATFORM, L8_EXTENSION_SCHEMA,
-                                         Sensor)
+from stactools.landsat.constants_l8 import (L8_INSTRUMENTS, L8_ITEM_DESCRIPTION,
+                                            L8_PLATFORM, L8_EXTENSION_SCHEMA)
+from stactools.landsat.constants_items import (INSTRUMENT, COMMON_ASSETS,
+                                               INSTRUMENT_ASSETS, INSTRUMENT_EO_BANDS,
+                                               LANDSAT_EXTENSION_SCHEMA, Sensor)
+                                               
 from stactools.landsat.mtl_metadata import MtlMetadata
 from stactools.landsat.ang_metadata import AngMetadata
 
@@ -29,8 +29,9 @@ def create_item(
     """Creates Landsat 1-5 Collection 2 Level-1 STAC Items and Landsat 4-5, 7-9
     Collection 2 Level-2 STAC Items.
 
-    Uses the MTL XML HREF as the bases for other files; assumes that all
-    files are co-located in a directory or blob prefix.
+    Uses the MTL XML HREF as the basis for other files.
+    Assumes that all files are co-located in a directory or blob prefix.
+    Optionally uses USGS STAC geometry, if available.
     """
     base_href = '_'.join(mtl_xml_href.split('_')[:-1])  # Remove the _MTL.txt
 
@@ -127,10 +128,9 @@ def create_item(
         projection = ProjectionExtension.ext(item, add_if_missing=True)
         projection.epsg = mtl_metadata.epsg
         # TODO: Fix/Check This!
-        #   - Assumes reflectance and thermal shapes always match (is there any
-        #     case where they would not?)
-        #   - Assumes reflectance will always exist (nighttime = only thermal?)
-        #   - I have yet to see an instance of either
+        #   - Assumes reflectance and thermal shapes always match. Is there any
+        #     case where they would not? I have yet to see an instance where
+        #     they do not match.
         projection.shape = mtl_metadata.sr_shape
         projection.transform = mtl_metadata.sr_transform
 
