@@ -9,7 +9,7 @@ import rasterio
 from rasterio import RasterioIOError
 from shapely.geometry import box, mapping, shape
 
-from stactools.landsat.constants import OLD_L8_EXTENSION_SCHEMA, L8_EXTENSION_SCHEMA
+from stactools.landsat.constants_l8 import OLD_L8_EXTENSION_SCHEMA, L8_EXTENSION_SCHEMA
 
 
 def _parse_date(in_date: str) -> datetime.datetime:

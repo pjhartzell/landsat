@@ -1,3 +1,4 @@
+import copy
 from typing import Optional
 import logging
 
@@ -6,6 +7,7 @@ import pystac
 from pystac.extensions.eo import EOExtension, Band
 from pystac.extensions.projection import ProjectionExtension
 from pystac.extensions.view import ViewExtension
+from pystac.extensions.raster import RasterExtension, RasterBand
 from stactools.core.io import ReadHrefModifier
 
 from stactools.landsat.assets import (ANG_ASSET_DEF, COMMON_ASSET_DEFS,
@@ -13,7 +15,7 @@ from stactools.landsat.assets import (ANG_ASSET_DEF, COMMON_ASSET_DEFS,
 from stactools.landsat.constants_l8 import (L8_INSTRUMENTS, L8_ITEM_DESCRIPTION,
                                             L8_PLATFORM, L8_EXTENSION_SCHEMA)
 from stactools.landsat.constants_items import (INSTRUMENT, COMMON_ASSETS,
-                                               INSTRUMENT_ASSETS, INSTRUMENT_EO_BANDS,
+                                               INSTRUMENT_ASSETS, INSTRUMENT_EO_BANDS, INSTRUMENT_RASTER_BANDS,
                                                LANDSAT_EXTENSION_SCHEMA, Sensor)
                                                
 from stactools.landsat.mtl_metadata import MtlMetadata
@@ -22,9 +24,9 @@ from stactools.landsat.ang_metadata import AngMetadata
 logger = logging.getLogger(__name__)
 
 
-def create_item(
+def create_stac_item(
         mtl_xml_href: str,
-        use_usgs_stac: bool,
+        use_usgs_stac: bool = False,
         read_href_modifier: Optional[ReadHrefModifier] = None) -> pystac.Item:
     """Creates Landsat 1-5 Collection 2 Level-1 STAC Items and Landsat 4-5, 7-9
     Collection 2 Level-2 STAC Items.
@@ -42,7 +44,7 @@ def create_item(
     level = int(mtl_metadata.item_id[6])
 
     # Don't change existing landsat 8 Item creation
-    if satellite == 8:
+    if satellite > 7:
         ang_href = ANG_ASSET_DEF.get_href(base_href)
         ang_metadata = AngMetadata.from_file(ang_href, read_href_modifier)
         scene_geometry = ang_metadata.get_scene_geometry(mtl_metadata.bbox)
@@ -96,7 +98,7 @@ def create_item(
         if use_usgs_stac:
             # get usgs stac metadata (geometry, asset hrefs keyed by new key names for alternate asset use)
             pass
-        if scene_geometry is None and sensor is not Sensor.MSS:
+        if scene_geometry is None and sensor is Sensor.OLI_TIRS:
             ang_href = ANG_ASSET_DEF.get_href(base_href)
             ang_metadata = AngMetadata.from_file(ang_href, read_href_modifier)
             scene_geometry = ang_metadata.get_scene_geometry(mtl_metadata.bbox)
@@ -137,45 +139,59 @@ def create_item(
         # -- Landsat
         item.stac_extensions.append(LANDSAT_EXTENSION_SCHEMA)
         item.properties.update(**mtl_metadata.landsat_metadata)
+        item.properties["landsat:correction"] = item.properties.pop("landsat:processing_level")
 
         # -- Add common assets
-        for key, asset_dict in COMMON_ASSETS.items():
+        assets = copy.deepcopy(COMMON_ASSETS)
+        for key, asset_dict in assets.items():
             asset_dict["href"] = f"{base_href}_{asset_dict.pop('href_suffix')}"
             # MTL files are specific to the processing level
             if "MTL" in key:
                 asset_dict["description"].replace("Level-X", f"Level-{level}")
             item.add_asset(key, pystac.Asset.from_dict(asset_dict))
         # MSS data does not have an angle file
-        if key == "ANG" and sensor is Sensor.MSS:
-            item.assets.pop("ANG", None)
+        if sensor is Sensor.MSS:
+            item.assets.pop("ANG")
 
         # -- Add optical assets
         instrument_key = INSTRUMENT["keys"][sensor.value]
-        assets = INSTRUMENT_ASSETS[instrument_key]["SR"]
-        bands = INSTRUMENT_EO_BANDS[instrument_key]["SR"]
+        assets = copy.deepcopy(INSTRUMENT_ASSETS[instrument_key]["SR"])
+        eo_bands = INSTRUMENT_EO_BANDS[instrument_key]["SR"]
+        raster_bands = INSTRUMENT_RASTER_BANDS[instrument_key]["SR"]
         for key, asset_dict in assets.items():
             asset_dict["type"] = pystac.MediaType.COG
             asset_dict["href"] = f"{base_href}_{key}.TIF"
             item.add_asset(key, pystac.Asset.from_dict(asset_dict))
-            band = bands.get(key, None)
-            if band is not None:
+            eo_band = eo_bands.get(key, None)
+            if eo_band is not None:
                 asset = item.assets[key]
                 eo = EOExtension.ext(asset, add_if_missing=True)
-                eo.bands = [Band.create(**band)]
+                eo.bands = [Band.create(**eo_band)]
+            raster_band = raster_bands.get(key, None)
+            if raster_band is not None:
+                asset = item.assets[key]
+                raster = RasterExtension.ext(asset, add_if_missing=True)
+                raster.bands = [RasterBand.create(**raster_band)]
 
-        # -- Add thermal assets (can only exist if optical exists; no nighttime)
+
+        # -- Add thermal assets (only exist if optical exist; no nighttime)
         if mtl_metadata.processing_level == 'L2SP':
-            assets = INSTRUMENT_ASSETS[instrument_key]["ST"]
-            bands = INSTRUMENT_EO_BANDS[instrument_key]["ST"]
+            assets = copy.deepcopy(INSTRUMENT_ASSETS[instrument_key]["ST"])
+            eo_bands = INSTRUMENT_EO_BANDS[instrument_key]["ST"]
+            raster_bands = INSTRUMENT_RASTER_BANDS[instrument_key]["ST"]
             for key, asset_dict in assets.items():
                 asset_dict["type"] = pystac.MediaType.COG
                 asset_dict["href"] = f"{base_href}_{key}.TIF"
                 item.add_asset(key, pystac.Asset.from_dict(asset_dict))
-                band = bands.get(key, None)
-                if band is not None:
+                eo_band = eo_bands.get(key, None)
+                if eo_band is not None:
                     asset = item.assets[key]
                     eo = EOExtension.ext(asset, add_if_missing=True)
-                    eo.bands = [Band.create(**band)]
+                    eo.bands = [Band.create(**eo_band)]
+                if raster_band is not None:
+                    asset = item.assets[key]
+                    raster = RasterExtension.ext(asset, add_if_missing=True)
+                    raster.bands = [RasterBand.create(**raster_band)]
 
     # -- Add links
     instrument_dir = "-".join(i for i in INSTRUMENT["lists"][sensor.value])

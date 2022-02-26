@@ -48,7 +48,7 @@ COMMON_ASSETS = {
     },
     "MTL.txt": {
         "type": MediaType.TEXT,
-        "title": "Product Metadata File",
+        "title": "Product Metadata File (txt)",
         "description": "Collection 2 Level-X Product Metadata File (txt)",
         "roles": ["metadata"],
         "href_suffix": "MTL.txt"
@@ -109,7 +109,7 @@ INSTRUMENT_ASSETS = {
                 "roles": ["data"]
             }
         },
-        "ST": {}
+        "ST": None
     },
     "TM_ETM": {
         "SR": {
@@ -240,7 +240,7 @@ INSTRUMENT_EO_BANDS = {
                 "center_wavelength": 0.95
             }
         },
-        "ST": {}
+        "ST": None
     },
     "TM_ETM": {
         "SR": {
@@ -285,3 +285,49 @@ INSTRUMENT_EO_BANDS = {
     }
 }
 
+INSTRUMENT_RASTER_BANDS = {
+    "MSS": {
+        "SR": {
+            "B4": {
+                "data_type": "uint8"
+            },
+            "B5": {
+                "data_type": "uint8"
+            },
+            "B6": {
+                "data_type": "uint8"
+            },
+            "B7": {
+                "data_type": "uint8"
+            }
+        },
+        "ST": None
+    },
+    "TM_ETM": {
+        "SR": {
+            "SR_B1": {
+                "data_type": "uint16"
+            },
+            "SR_B2": {
+                "data_type": "uint16"
+            },
+            "SR_B3": {
+                "data_type": "uint16"
+            },
+            "SR_B4": {
+                "data_type": "uint16"
+            },
+            "SR_B5": {
+                "data_type": "uint16"
+            },
+            "SR_B7": {
+                "data_type": "uint16"
+            },
+        },
+        "ST": {
+            "ST_B6": {
+                "data_type": "uint16"
+            }
+        }
+    }
+}

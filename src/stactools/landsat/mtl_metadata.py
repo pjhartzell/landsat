@@ -237,14 +237,14 @@ class MtlMetadata:
         return self._get_float("IMAGE_ATTRIBUTES/SUN_ELEVATION")
 
     @property
-    def off_nadir(self) -> Optional[float]:
-        # NADIR_OFFNADIR is not specified in MSS metadata files.
-        if self.item_id[1] == "M":
-            return None
-        elif self._get_text("IMAGE_ATTRIBUTES/NADIR_OFFNADIR") == "NADIR":
-            return 0
+    def off_nadir(self) -> Optional[float]: 
+        # NADIR_OFFNADIR and ROLL_ANGLE xml entries do not exist prior to
+        # landsat 8. If OFFNADIR, then a non-zero ROLL_ANGLE exists. We force
+        # the ROLL_ANGLE positive to conform with the view geometry extension
+        if self._root.find_text("IMAGE_ATTRIBUTES/NADIR_OFFNADIR") == "OFFNADIR":
+            return abs(self._get_float("IMAGE_ATTRIBUTES/ROLL_ANGLE"))
         else:
-            return None
+            return 0
 
     @property
     def wrs_path(self) -> str:
@@ -269,7 +269,7 @@ class MtlMetadata:
                 self._get_text("PRODUCT_CONTENTS/COLLECTION_CATEGORY"),
             "landsat:collection_number":
                 self._get_text("PRODUCT_CONTENTS/COLLECTION_NUMBER"),
-            "landsat:correction":
+            "landsat:processing_level":
                 self.processing_level,
             "landsat:scene_id":
                 self.scene_id

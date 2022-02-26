@@ -11,7 +11,7 @@ import rasterio
 from stactools.core.projection import reproject_geom
 from stactools.landsat.assets import SR_ASSET_DEFS, ST_B10_ASSET_DEF, THERMAL_ASSET_DEFS
 from stactools.landsat.commands import create_landsat_command
-from stactools.landsat.constants import (L8_SR_BANDS, L8_SP_BANDS)
+from stactools.landsat.constants_l8 import (L8_SR_BANDS, L8_SP_BANDS)
 from stactools.testing import CliTestCase
 
 from tests.data import TEST_MTL_PATHS
